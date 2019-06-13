@@ -14,8 +14,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String anAcronym="";
+		String toBeAcronymized = phrase.replace("-", " ");
+		
+		String[] arr = toBeAcronymized.split(" ");
+		
+		
+		for (int i = 0; i < arr.length; i++) {
+			anAcronym = anAcronym + arr[i].toUpperCase().charAt(0);
+			
+		}
+		
+		return anAcronym;
 	}
 
 	/**
@@ -34,8 +44,45 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		String[] stringArray = string.toUpperCase().split("");
+		
+		String onePoint = "AEIOULNRST";
+		String twoPoint = "DG";
+		String threePoint = "BCMP";
+		String fourPoint = "FHVWY";
+		String fivePoint = "K";
+		String eightPoint = "XJ";
+		String tenPoint = "ZQ";
+		
+		int totalPoints = 0;
+		
+		for (int i = 0; i < stringArray.length; i++) {
+			if (onePoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 1;
+			}
+			if (twoPoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 2;
+			}
+			if (threePoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 3;
+			}
+			if (fourPoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 4;
+			}
+			if (fivePoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 5;
+			}
+			if (eightPoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 8;
+			}
+			if (tenPoint.indexOf(stringArray[i]) != -1 ) {
+				totalPoints += 10;
+			}
+		}
+
+
+		return totalPoints;
 	}
 
 	/**
@@ -70,8 +117,21 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String onlyNumbers = string.replace(" ", "").replace("(", "").replace(")", "").replace("-", "").replace(".", "");
+		String numbers = "1234567890";
+		
+		if ( onlyNumbers.length() > 11) {
+			throw new IllegalArgumentException();
+		}
+		String[] onlyNumbersArray = onlyNumbers.split("");
+		
+		for (int i = 0; i < onlyNumbersArray.length; i++) {
+			if (numbers.indexOf(onlyNumbersArray[i]) == -1) {
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		return onlyNumbers;
 	}
 
 	/**
@@ -84,7 +144,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+		
+		
+			
 		return null;
 	}
 
@@ -152,9 +214,9 @@ public class EvaluationService {
 	 * 
 	 * For example:
 	 * 
-	 * 9 is an Armstrong number, because 9 = 9^1 = 9 10 is not an Armstrong number,
-	 * because 10 != 1^2 + 0^2 = 2 153 is an Armstrong number, because: 153 = 1^3 +
-	 * 5^3 + 3^3 = 1 + 125 + 27 = 153 154 is not an Armstrong number, because: 154
+	 * 9 is an Armstrong number, because 9 = 9^1 = 9. 10 is not an Armstrong number,
+	 * because 10 != 1^2 + 0^2 = 2. 153 is an Armstrong number, because: 153 = 1^3 +
+	 * 5^3 + 3^3 = 1 + 125 + 27 = 153. 154 is not an Armstrong number, because: 154
 	 * != 1^3 + 5^3 + 4^3 = 1 + 125 + 64 = 190 Write some code to determine whether
 	 * a number is an Armstrong number.
 	 * 
@@ -162,7 +224,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
+		
+		String stringedNum = Integer.toString(input);
+		String[] arrayedNum = stringedNum.split("");
+		int raisedBy = arrayedNum.length;
+		int totalSum = 0;
+		
+		for (int i = 0; i < arrayedNum.length; i++) {
+			totalSum += Math.pow(Integer.parseInt(arrayedNum[i]), raisedBy);
+		}
+		
+		if (totalSum == input) {
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -176,10 +251,14 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
-	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
+//	public List<Long> calculatePrimeFactorsOf(long l) {
+//		
+//		
+//		for (int i = 0; i < l; i++)
+//		
+//		
+//		return null;
+//	}
 
 
 	/**
@@ -215,8 +294,8 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String[] arrayedString = string.replace(" ", "").replace(".", "").replace(",", "").replace("'", "").split("");
+			return String.join(",", arrayedString);
 		}
 
 		/**
@@ -259,7 +338,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
+			
 		return 0;
 	}
 
